@@ -1,0 +1,34 @@
+@startuml Domain
+
+interface ActivitiesService {
+    <<mutation> addEvent()
+    <<mutation> addLike()
+    <<mutation> removeLike()
+    <<query> findUserEvents()
+    <<query> findUserLikes()
+}
+
+interface core::Entity
+
+class Event implements core::Entity
+class Like implements core::Entity
+
+enum EventType {
+    CheckIn
+    ActivityStart
+    ActivityEnd
+}
+
+enum LikeType {
+    Activity
+    Coach
+}
+
+Event --> EventType
+Like --> LikeType
+
+package repositories { }
+
+ActivitiesService ..> repositories
+
+@enduml

@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# build & test output
+/dist
+/coverage
+
+# env config
+.env
+.env*
+
+# yarn logs and lock
+*.log
+*.lock
+package-lock.json
+
+/scratch

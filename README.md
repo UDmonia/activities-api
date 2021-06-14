@@ -36,7 +36,7 @@ DB_URL=<mongo-connection-string>
 DB_OPTIONS=<mongo-connection-options>
 SECRET=<bcrypt-secret>
 SERVER_HOST=(defaults to '0.0.0.0')
-PORT=(defaults to 5000)
+PORT=(defaults to 6000)
 API_BASE_URI=(defaults to '/')
 ```
 

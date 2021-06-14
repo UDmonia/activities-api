@@ -4,11 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist/* & tsc --build --force --verbose",
+    "build": "rm -rf dist/* && tsc --build --force --verbose",
     "dev": "ts-node-dev --watch src src/server.ts",
     "start": "node dist/server.js",
     "test": "jest --collect-coverage",
-    "docker-build": "docker build -t co-activities-api:latest ."
+    "docker-build": "docker build -t co-activities-api:latest .",
+    "docker-run": "docker run --name co-activities-api --env-file .env.docker -p 6000:6000 co-activities-api:latest",
+    "docker-login": "aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 787979102546.dkr.ecr.us-west-1.amazonaws.com",
+    "docker-push": "docker tag co-activities-api:latest 787979102546.dkr.ecr.us-west-1.amazonaws.com/activities-api:latest & docker push 787979102546.dkr.ecr.us-west-1.amazonaws.com/activities-api:latest"
   },
   "jest": {
     "verbose": true,
@@ -34,13 +37,16 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "5.10.18"
+    "lodash": "^4.17.21",
+    "mongoose": "5.10.18",
+    "qs": "^6.10.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
     "@types/jest": "^26.0.23",
     "@types/jsonwebtoken": "^8.5.1",
+    "@types/lodash": "^4.14.170",
     "@types/mongoose": "5.10.2",
     "eslint": "^7.28.0",
     "eslint-plugin-node": "^11.1.0",

@@ -9,9 +9,8 @@
 .env
 .env*
 
-# yarn logs and lock
+# logs and npm lock
 *.log
-*.lock
 package-lock.json
 
 /scratch

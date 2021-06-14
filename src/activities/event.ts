@@ -1,4 +1,4 @@
-import { prop } from '@typegoose/typegoose';
+import { index, prop } from '@typegoose/typegoose';
 import { ID, Entity, ObjectId, ObjectIdType } from '../core/entity';
 
 export enum EventType {
@@ -10,6 +10,7 @@ export enum EventType {
 export interface NewEvent {
     eventType: EventType;
     userId: ID;
+    timestamp?: Date;
 }
 
 export interface NewCheckInEvent extends NewEvent {
@@ -21,6 +22,8 @@ export interface NewActivityEvent extends NewEvent {
     score?: number;
 }
 
+@index({ userId: 1 })
+@index({ createdAt: 1 })
 export class Event implements Entity {
     @prop({ type: () => ObjectIdType })
     _id: ID;
@@ -40,10 +43,14 @@ export class Event implements Entity {
     @prop()
     score?: number;
 
+    @prop({ type: () => Date })
+    timestamp: Date;
+
     constructor (args: NewCheckInEvent | NewActivityEvent) {
         this._id = new ObjectId();
         this.eventType = args.eventType;
         this.userId = args.userId;
+        this.timestamp = args.timestamp || new Date();
 
         if (this.eventType == EventType.CheckIn) {
             const checkIn = args as NewCheckInEvent;
@@ -58,5 +65,7 @@ export class Event implements Entity {
             this.score = activity.score;
         }
     }
+
+    
 
 }

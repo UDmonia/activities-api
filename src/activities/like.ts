@@ -1,4 +1,4 @@
-import { prop } from '@typegoose/typegoose';
+import { index, prop } from '@typegoose/typegoose';
 import { ID, Entity, ObjectId, ObjectIdType } from '../core/entity';
 
 export enum LikeType {
@@ -12,6 +12,7 @@ export interface NewLike {
     name: string;
 }
 
+@index({ userId: 1 })
 export class Like implements Entity {
     @prop({ type: () => ObjectIdType })
     _id: ID;

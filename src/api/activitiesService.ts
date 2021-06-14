@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import Config from '../config';
 import Service from '../core/service';
-import Activities from '../activities';
+import Activities, { EventType } from '../activities';
 import { ObjectId } from 'bson';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
-
+//import qs from 'qs';
 
 export interface Token {
     userId: string
@@ -93,6 +93,32 @@ export class ActivitiesService extends Service {
         if (!userId) return super.responseUnauthorizedError(resp);
 
         const result = await Activities.findUserEvents(userId as ObjectId);
+        super.responseOk(resp, result);
+    }
+
+    async dailyEvents (req: Request, resp: Response): Promise<void> {
+        const userId: unknown = getUserId(req);
+        if (!userId) return super.responseUnauthorizedError(resp);
+
+        const eventType: string = req.query?.eventType?.toString() || '';
+        const startTimestamp = parseInt(req.query?.startTimestamp?.toString() || '');
+        
+        const result = await Activities.findDailyEvents(
+            userId as ObjectId, eventType as EventType, new Date(startTimestamp)
+        );
+        super.responseOk(resp, result);
+    }
+
+    async monthlyEvents (req: Request, resp: Response): Promise<void> {
+        const userId: unknown = getUserId(req);
+        if (!userId) return super.responseUnauthorizedError(resp);
+
+        const eventType: string = req.query?.eventType?.toString() || '';
+        const startTimestamp = parseInt(req.query?.startTimestamp?.toString() || '');
+        
+        const result = await Activities.findMonthlyEvents(
+            userId as ObjectId, eventType as EventType, new Date(startTimestamp)
+        );
         super.responseOk(resp, result);
     }
 

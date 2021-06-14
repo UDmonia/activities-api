@@ -1,5 +1,4 @@
 import Express, { RequestHandler, Request, Response } from 'express';
-import jwt, { VerifyErrors } from 'jsonwebtoken';
 import Config from '../config';
 import cors from 'cors';
 
@@ -12,6 +11,9 @@ function routes () {
 
     endpoints.post('/events', activitiesService.addEvent);
     endpoints.get('/events', activitiesService.userEvents);
+
+    endpoints.get('/events/daily', activitiesService.dailyEvents);
+    endpoints.get('/events/monthly', activitiesService.monthlyEvents);
 
     endpoints.post('/likes', activitiesService.addLike);
     endpoints.get('/likes', activitiesService.userLikes);

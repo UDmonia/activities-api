@@ -22,8 +22,6 @@ export class EventRepository extends MongoRepository<Event> implements CrudRepos
             filter['timestamp'] = filter['timestamp'] ? { ...filter['timestamp'], $lt: end } : { $lt: end };
         }
 
-        console.log('findByEventType filter', filter);
-
         const likes = await super.find({ filter, sort: { timestamp: 1 } });
         return likes;
     }

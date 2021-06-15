@@ -1,8 +1,8 @@
-name: Activities Service CI for Development
+name: Activities Service CI for Staging
 
 on:
   push:
-    branches: [main]
+    branches: [staging]
 
 jobs:
   build:
@@ -49,7 +49,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
           ECR_REPOSITORY: activities-api
-          IMAGE_TAG: 'latest'
+          IMAGE_TAG: 'RC-1.0'
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -62,13 +62,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: activities-api-latest
+          container-name: activities-api-rc
           image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: task-definition.json
-          service: activities-api
-          cluster: dev
+          service: activities-api-rc
+          cluster: staging
           wait-for-service-stability: true

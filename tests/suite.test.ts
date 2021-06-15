@@ -10,7 +10,7 @@ afterAll(Utils.afterAll);
 describe('Events Summary', () => {
     EventsSummary();
 });
-/*
+
 describe('Events', () => {
     Events();
 });
@@ -18,4 +18,3 @@ describe('Events', () => {
 describe('Likes', () => {
     Likes();
 });
-*/

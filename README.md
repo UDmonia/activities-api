@@ -14,6 +14,8 @@ This service manages activities event tracking and likes.
 - `POST /likes`: Add like for logged in user
 - `DELETE /likes`: Mark existing like as removed
 - `GET /likes`: Retrieve user likes
+- `GET /events/daily`: Retrieve daily events summary
+- `GET /events/monthly`: Retrieve monthly events summary
 
 # Usage
 

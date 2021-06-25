@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "7dd990c8-c795-410c-99cc-d462352ece33",
+		"name": "calmon-activities-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Daily Events",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{HOST}}/api/activities/events/daily?startTimestamp=1624639659300&eventType=CheckIn",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"events",
+								"daily"
+							],
+							"query": [
+								{
+									"key": "startTimestamp",
+									"value": "1624639659300"
+								},
+								{
+									"key": "eventType",
+									"value": "CheckIn"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Daily Events - ActivityStart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{HOST}}/api/activities/events/daily?startTimestamp=1624639659300&eventType=ActivityStart",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"events",
+								"daily"
+							],
+							"query": [
+								{
+									"key": "startTimestamp",
+									"value": "1624639659300"
+								},
+								{
+									"key": "eventType",
+									"value": "ActivityStart"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly Events - CheckIn",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{HOST}}/api/activities/events/monthly?startTimestamp=1624639659300&eventType=CheckIn",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"events",
+								"monthly"
+							],
+							"query": [
+								{
+									"key": "startTimestamp",
+									"value": "1624639659300"
+								},
+								{
+									"key": "eventType",
+									"value": "CheckIn"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly Events - ActivityEnd",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{HOST}}/api/activities/events/monthly?startTimestamp=1624639659300&eventType=ActivityEnd",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"events",
+								"monthly"
+							],
+							"query": [
+								{
+									"key": "startTimestamp",
+									"value": "1624639659300"
+								},
+								{
+									"key": "eventType",
+									"value": "ActivityEnd"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add CheckIn",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventType\": \"CheckIn\",\r\n    \"mood\": \"happy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/api/activities/events",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Activitiy Start",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventType\": \"ActivityStart\",\r\n    \"activityName\": \"Play\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/api/activities/events",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Activitiy End",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventType\": \"ActivityEnd\",\r\n    \"activityName\": \"Play\",\r\n    \"score\": 91.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/api/activities/events",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

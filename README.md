@@ -17,6 +17,8 @@ This service manages activities event tracking and likes.
 - `GET /events/daily`: Retrieve daily events summary
 - `GET /events/monthly`: Retrieve monthly events summary
 
+> For easy endpoints testing a Postman collection export is provided at [tests/activities-api.postman_collection.json](tests/activities-api.postman_collection.json).
+
 # Usage
 
 ## Install dependencies and/or build
